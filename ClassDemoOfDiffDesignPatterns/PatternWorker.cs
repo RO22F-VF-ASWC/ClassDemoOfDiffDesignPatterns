@@ -37,7 +37,7 @@ namespace ClassDemoOfDiffDesignPatterns
             //DemoComposite();
 
 
-            //DemoObserver();
+            DemoObserver();
             //DemoTemplate();
             //DemoStrategy();
             //DemoState();
@@ -176,8 +176,30 @@ namespace ClassDemoOfDiffDesignPatterns
             ObservableObject obj = new ObservableObject(3, "text");
             obj.Text = "Peter"; // nothing happen
 
+            obj.PropertyChanged += (sender, args) =>
+            {
+                Console.WriteLine("Anonymuos Method " + args.PropertyName);
+            };
+            obj.Text = "Anders";
 
-            
+
+            Console.WriteLine("Named method added");
+            obj.PropertyChanged += Update;
+            obj.Id = 99;
+
+            Console.WriteLine("Named method removed");
+            obj.PropertyChanged -= Update;
+            obj.Id = 222;
+
+
+
+
+
+
+
+
+
+
         }
 
         /*
